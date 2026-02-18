@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   title: "Lonestar Transmissions | Professional Transmission Services in Crosby, TX",
   description: "Professional transmission repair and services in Crosby, Texas. Contact us at 281-462-4970. Located at 4321 US-90, Crosby, TX 77532.",
   keywords: ["transmission repair", "Crosby TX", "auto repair", "transmission services", "Lonestar Transmissions"],
+  icons: {
+    icon: "/favicon.png",
+  },
   openGraph: {
     title: "Lonestar Transmissions",
     description: "Professional Transmission Services in Crosby, TX",

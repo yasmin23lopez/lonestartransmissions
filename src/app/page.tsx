@@ -11,7 +11,7 @@ export default function Home() {
           {/* Left - Logo */}
           <div className="flex-shrink-0">
             <Image
-              src="/logo.png"
+              src="/logo.jpg"
               alt="Lonestar Transmissions"
               width={380}
               height={380}
