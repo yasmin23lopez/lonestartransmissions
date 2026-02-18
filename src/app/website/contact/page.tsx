@@ -35,7 +35,7 @@ export default function ContactPage() {
             CONTACT US
           </h1>
           <p className="text-white/70 text-xl max-w-2xl">
-            Have questions? Need a quote? We're here to help. Reach out by phone, email, or stop by our shop in Crosby.
+            Have questions? Need a quote? We're here to help. Reach out by phone, email, or stop by our shop in Crosby
           </p>
         </div>
       </section>
