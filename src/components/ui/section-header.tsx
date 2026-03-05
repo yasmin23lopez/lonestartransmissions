@@ -30,7 +30,7 @@ export function SectionHeader({ label, title, description, centered = false, lig
       </h2>
       {description && (
         <FadeIn delay={0.2}>
-          <p className={`text-lg max-w-lg ${light ? "text-white/70" : "text-gray-500"}`}>{description}</p>
+          <p className={`text-lg max-w-lg ${centered ? "mx-auto" : ""} ${light ? "text-white/70" : "text-gray-500"}`}>{description}</p>
         </FadeIn>
       )}
     </div>

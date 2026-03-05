@@ -3,12 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X, ChevronDown } from "lucide-react";
+import { Phone, Menu, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 import { CarDiagnosticIcon, OilChangeIcon, BrakesIcon, HeatACIcon, TransmissionIcon } from "@/components/icons";
 
 const BOOKING_URL = "https://booking.shopgenie.io/?shop=lonestartransmissions-4250819731&preselect_account=lonestartransmissions-4250819473";
+
+const ANNOUNCEMENTS = [
+  { text: "Free Towing", subtext: "*with major repair" },
+  { text: "10% off military discount", subtext: "*on labor" },
+  { text: "We work with extended warranty", subtext: "" },
+];
 
 const NAV_ITEMS = [
   { label: "Home", href: "/website" },
@@ -31,6 +37,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [servicesHovered, setServicesHovered] = useState(false);
+  const [currentAnnouncement, setCurrentAnnouncement] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
@@ -40,6 +47,14 @@ export function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Auto-rotate announcements
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAnnouncement((prev) => (prev + 1) % ANNOUNCEMENTS.length);
+    }, 4000);
+    return () => clearInterval(interval);
   }, []);
 
   // Close dropdown when clicking outside
@@ -69,8 +84,51 @@ export function Navbar() {
 
   return (
     <>
+      {/* Announcement Bar */}
+      <div className={`fixed top-0 left-0 right-0 z-50 h-10 flex items-center justify-center transition-colors duration-300 ${
+        scrolled ? "bg-[#DC2626]" : "bg-white"
+      }`}>
+        <div className="flex items-center gap-4 max-w-[1600px] w-full px-6 lg:px-12">
+          <button 
+            onClick={() => setCurrentAnnouncement((prev) => (prev - 1 + ANNOUNCEMENTS.length) % ANNOUNCEMENTS.length)}
+            className={`p-1 transition-colors ${scrolled ? "text-white/70 hover:text-white" : "text-gray-400 hover:text-gray-600"}`}
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          
+          <div className="flex-1 flex items-center justify-center overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentAnnouncement}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+                className="flex items-center gap-2 text-center"
+              >
+                <span className={`text-sm font-semibold ${scrolled ? "text-white" : "text-[#16215B]"}`}>
+                  {ANNOUNCEMENTS[currentAnnouncement].text}
+                </span>
+                {ANNOUNCEMENTS[currentAnnouncement].subtext && (
+                  <span className={`text-xs ${scrolled ? "text-white/70" : "text-gray-500"}`}>
+                    {ANNOUNCEMENTS[currentAnnouncement].subtext}
+                  </span>
+                )}
+              </motion.div>
+            </AnimatePresence>
+          </div>
+          
+          <button 
+            onClick={() => setCurrentAnnouncement((prev) => (prev + 1) % ANNOUNCEMENTS.length)}
+            className={`p-1 transition-colors ${scrolled ? "text-white/70 hover:text-white" : "text-gray-400 hover:text-gray-600"}`}
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-10 left-0 right-0 z-50 transition-all duration-300 ${
           isWhiteMode 
             ? "bg-white border-b border-gray-200" 
             : isRedMode

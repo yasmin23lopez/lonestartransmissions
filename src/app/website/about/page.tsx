@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { CheckCircle, Award, Users, Clock, Shield, ArrowUpRight, Phone, Settings, MapPin, Play } from "lucide-react";
+import { CheckCircle, Award, Users, Clock, Shield, ArrowUpRight, Phone, Settings, MapPin } from "lucide-react";
 
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -11,32 +11,31 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const TEAM_MEMBERS = [
-  { name: "Owner", role: "Founder & Owner", image: "/0.png" },
-  { name: "Juvenal Toledo", role: "Shop Manager", image: "/5.png" },
-  { name: "Gerardo Campos", role: "R&R Specialist", image: "/gerardo_.png" },
-  { name: "German Guerrero", role: "High Tech Mechanic", image: "/german.png" },
-  { name: "Jose Torres", role: "High Tech Mechanic", image: "/4.png" },
-  { name: "George Martinez", role: "Transmission Builder", image: "/6.png" },
+  { name: "Armando", role: "Founder & Owner", image: "/armando_photo.jpg" },
+  { name: "Juvenal Toledo", role: "Shop Manager", image: "/juvenal_photo.jpg" },
+  { name: "Gerardo Campos", role: "R&R Specialist", image: "/gerardo_photo.jpg" },
+  { name: "German Guerrero", role: "High Tech Mechanic", image: "/german_photo.jpg" },
+  { name: "Jose Torres", role: "High Tech Mechanic", image: "/jose_photo.jpg" },
+  { name: "George Martinez", role: "Transmission Builder", image: "/george_photo.jpg" },
 ];
 
 export default function AboutPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [videoPlaying, setVideoPlaying] = useState(false);
 
   return (
     <div className="min-h-screen bg-white font-[family-name:var(--font-funnel)] overflow-x-hidden">
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+      <section className="relative pt-44 pb-32 lg:pt-52 lg:pb-44 overflow-hidden">
         <div className="absolute inset-0 bg-[#16215B]">
           <Image
-            src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?q=80&w=2074"
+            src="/about_hero.jpg"
             alt="About Us"
             fill
-            className="object-cover opacity-20"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#16215B]/95 via-[#16215B]/85 to-[#16215B]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#16215B] via-[#16215B]/50 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
@@ -90,19 +89,8 @@ export default function AboutPage() {
                   loop
                   muted
                   playsInline
-                  autoPlay={videoPlaying}
-                  onClick={() => setVideoPlaying(!videoPlaying)}
+                  autoPlay
                 />
-                {!videoPlaying && (
-                  <div 
-                    className="absolute inset-0 bg-black/30 flex items-center justify-center cursor-pointer"
-                    onClick={() => setVideoPlaying(true)}
-                  >
-                    <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
-                      <Play className="w-8 h-8 text-[#DC2626] ml-1" />
-                    </div>
-                  </div>
-                )}
               </div>
             </FadeIn>
           </div>
@@ -138,7 +126,7 @@ export default function AboutPage() {
                     ${isFirstRow ? 'border-b border-gray-200' : ''}`}
                   >
                     <div className="p-6 lg:p-8">
-                      <div className="relative rounded-2xl overflow-hidden mb-4 border-white border">
+                      <div className="relative rounded-2xl overflow-hidden mb-4 border border-gray-200">
                         <Image
                           src={member.image}
                           alt={member.name}
@@ -212,13 +200,13 @@ export default function AboutPage() {
                 <div className="space-y-4 mb-8">
                   <p className="text-white text-xl font-bold">{CONTACT.address}</p>
                   <p className="text-white/60">Monday - Friday: 8:00 AM - 6:00 PM</p>
-                  <p className="text-white/60">Saturday: 9:00 AM - 3:00 PM</p>
+                  <p className="text-white/60">Saturday: 8:00 AM - 12:00 PM</p>
                 </div>
                 <a
                   href={CONTACT.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out rounded-[9px]"
                 >
                   GET DIRECTIONS
                   <ArrowUpRight className="w-5 h-5" />
@@ -297,7 +285,7 @@ export default function AboutPage() {
               </p>
               <a
                 href={`tel:${CONTACT.phone}`}
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#1314CC] text-white font-saira font-semibold tracking-wider hover:bg-[#0e0ea0] transition-all duration-500 ease-out"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#1314CC] text-white font-saira font-semibold tracking-wider hover:bg-[#0e0ea0] transition-all duration-500 ease-out rounded-[9px]"
               >
                 SCHEDULE A CALL
                 <ArrowUpRight className="w-5 h-5" />
@@ -317,11 +305,11 @@ export default function AboutPage() {
             Call us for a free diagnostic or book your appointment online. We'll take care of the rest.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-saira font-semibold tracking-wider hover:bg-gray-100 transition-all duration-500 ease-out">
+            <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-saira font-semibold tracking-wider hover:bg-gray-100 transition-all duration-500 ease-out rounded-[9px]">
               <Phone className="w-5 h-5" />
               <span>CALL NOW</span>
             </a>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-saira font-semibold tracking-wider hover:bg-white hover:text-[#DC2626] transition-all duration-500 ease-out">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-saira font-semibold tracking-wider hover:bg-white hover:text-[#DC2626] transition-all duration-500 ease-out rounded-[9px]">
               BOOK ONLINE
               <ArrowUpRight className="w-5 h-5" />
             </a>

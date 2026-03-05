@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Phone, ArrowRight, ChevronLeft, ChevronRight, CheckCircle, Star, DollarSign, Clock, Shield, Settings } from "lucide-react";
+import { Phone, ArrowRight, ChevronLeft, ChevronRight, CheckCircle, Star, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
@@ -89,7 +89,7 @@ export default function Website() {
           >
             <a 
               href="#services" 
-              className="inline-flex items-center gap-3 px-12 py-5 bg-white text-[#DC2626] text-lg font-saira font-semibold italic uppercase hover:bg-gray-100 transition-all duration-500 ease-out border-2 border-white"
+              className="inline-flex items-center gap-3 px-12 py-5 bg-white text-[#DC2626] text-lg font-saira font-semibold italic uppercase hover:bg-gray-100 transition-all duration-500 ease-out border-2 border-white rounded-[9px]"
             >
               VIEW SERVICES
             </a>
@@ -97,7 +97,7 @@ export default function Website() {
               href={BOOKING_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-12 py-5 bg-[#DC2626] text-white text-lg font-saira font-semibold italic uppercase hover:bg-[#b91c1c] transition-all duration-500 ease-out border-2 border-white"
+              className="inline-flex items-center gap-3 px-12 py-5 bg-[#DC2626] text-white text-lg font-saira font-semibold italic uppercase hover:bg-[#b91c1c] transition-all duration-500 ease-out border-2 border-white rounded-[9px]"
             >
               BOOK ONLINE
             </a>
@@ -106,7 +106,7 @@ export default function Website() {
       </section>
 
       {/* Services Slider Section */}
-      <section id="services" className="relative min-h-screen flex items-center overflow-hidden">
+      <section id="services" className="relative min-h-screen flex items-end overflow-hidden">
         {/* Background Images */}
         <div className="absolute inset-0 bg-[#16215B]">
           {SERVICES_DETAILED.map((service, index) => (
@@ -127,12 +127,11 @@ export default function Website() {
             </motion.div>
           ))}
           {/* Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#16215B]/95 via-[#16215B]/80 to-[#16215B]/60 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#16215B]/90 via-transparent to-[#16215B]/40 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#16215B] via-[#16215B]/50 to-transparent z-10" />
         </div>
 
-        <div className="relative z-20 w-full max-w-[1600px] mx-auto px-6 lg:px-12 py-24">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className="relative z-20 w-full max-w-[1600px] mx-auto px-6 lg:px-12 pt-44 pb-16">
+          <div className="grid lg:grid-cols-12 gap-12 items-end">
             {/* Left Content */}
             <div className="lg:col-span-6 space-y-8">
               <div className="space-y-2">
@@ -148,11 +147,11 @@ export default function Website() {
               </p>
 
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                <a href={`tel:${CONTACT.phone}`} className="group inline-flex items-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out">
+                <a href={`tel:${CONTACT.phone}`} className="group inline-flex items-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out rounded-[9px]">
                   <Phone className="w-5 h-5" />
                   <span>CALL: {CONTACT.phone}</span>
                 </a>
-                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white font-saira font-semibold tracking-wider hover:bg-white hover:text-[#070889] transition-all duration-500 ease-out">
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-8 py-4 border-2 border-white text-white font-saira font-semibold tracking-wider hover:bg-white hover:text-[#070889] transition-all duration-500 ease-out rounded-[9px]">
                   <span>BOOK ONLINE</span>
                   <ArrowRight className="w-5 h-5" />
                 </a>
@@ -245,7 +244,7 @@ export default function Website() {
                   </div>
                   <Link 
                     href={SERVICES_DETAILED[currentService].href} 
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#1314CC] text-white font-saira font-semibold hover:bg-[#0e0ea0] transition-all duration-500 ease-out"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#1314CC] text-white font-saira font-semibold hover:bg-[#0e0ea0] transition-all duration-500 ease-out rounded-[9px]"
                   >
                     <span>LEARN MORE</span>
                     <ArrowRight className="w-4 h-4" />
@@ -271,35 +270,64 @@ export default function Website() {
       {/* Financing Section */}
       <section id="financing" className="py-24 lg:py-32">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <SectionHeader label="FLEXIBLE PAYMENT" title={["FINANCING", "AVAILABLE"]} description="Don't let car trouble break the bank. We offer flexible financing options so you can get back on the road without the stress." />
-              <FadeIn delay={0.3}>
-                <a href={`tel:${CONTACT.phone}`} className="group inline-flex items-center gap-3 px-8 py-4 bg-[#1314CC] text-white font-saira font-semibold tracking-wider hover:bg-[#0e0ea0] transition-all duration-500 ease-out">
-                  <span>ASK ABOUT FINANCING</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-500" />
-                </a>
-              </FadeIn>
-            </div>
-            <FadeIn delay={0.2}>
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { icon: DollarSign, title: "Easy Approval", desc: "Quick application process" },
-                  { icon: Clock, title: "Flexible Terms", desc: "Payment plans that fit your budget" },
-                  { icon: Shield, title: "No Hidden Fees", desc: "Transparent pricing always" },
-                  { icon: CheckCircle, title: "Same-Day Service", desc: "Get approved and repaired fast" },
-                ].map((item, i) => (
-                  <div key={i} className="bg-gray-50 rounded-2xl p-6 text-center">
-                    <div className="w-12 h-12 bg-[#1314CC]/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                      <item.icon className="w-6 h-6 text-[#1314CC]" />
-                    </div>
-                    <p className="font-bold text-[#070889] mb-1">{item.title}</p>
-                    <p className="text-sm text-gray-500">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
+          <div className="text-center mb-16">
+            <SectionHeader label="FLEXIBLE PAYMENT" title={["FINANCING", "AVAILABLE"]} description="Don't let car trouble break the bank. We offer flexible financing options so you can get back on the road without the stress." centered />
           </div>
+          
+          {/* Financing Partners */}
+          <FadeIn delay={0.2}>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* EasyPay */}
+              <a 
+                href="https://customerappx.easypayfinance.com/application/A52AADEF" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center justify-center hover:shadow-lg hover:border-[#1314CC] transition-all duration-300 group"
+              >
+                <Image src="/easypay.webp" alt="EasyPay Finance" width={200} height={80} className="h-16 w-auto object-contain mb-4" />
+                <span className="text-sm text-gray-500 group-hover:text-[#1314CC] transition-colors">Apply Now</span>
+              </a>
+
+              {/* Snap Finance */}
+              <a 
+                href="https://snapf.in/PTgnwlr" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center justify-center hover:shadow-lg hover:border-[#1314CC] transition-all duration-300 group"
+              >
+                <Image src="/snap.jpeg" alt="Snap Finance" width={200} height={80} className="h-20 w-auto object-contain mb-4" />
+                <span className="text-sm text-gray-500 group-hover:text-[#1314CC] transition-colors">Up to $5,000</span>
+              </a>
+
+              {/* Affirm */}
+              <a 
+                href="#" 
+                className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center justify-center hover:shadow-lg hover:border-[#1314CC] transition-all duration-300 group"
+              >
+                <Image src="/affirm.png" alt="Affirm" width={200} height={80} className="h-20 w-auto object-contain mb-4" />
+                <span className="text-sm text-gray-500 group-hover:text-[#1314CC] transition-colors">Pay Over Time</span>
+              </a>
+
+              {/* Klarna */}
+              <a 
+                href="#" 
+                className="bg-white border border-gray-200 rounded-2xl p-8 flex flex-col items-center justify-center hover:shadow-lg hover:border-[#1314CC] transition-all duration-300 group"
+              >
+                <Image src="/klarna.png" alt="Klarna" width={200} height={80} className="h-16 w-auto object-contain mb-4" />
+                <span className="text-sm text-gray-500 group-hover:text-[#1314CC] transition-colors">Flexible Payments</span>
+              </a>
+            </div>
+          </FadeIn>
+
+          {/* CTA */}
+          <FadeIn delay={0.3}>
+            <div className="text-center mt-12">
+              <a href={`tel:${CONTACT.phone}`} className="group inline-flex items-center gap-3 px-8 py-4 bg-[#1314CC] text-white font-saira font-semibold tracking-wider hover:bg-[#0e0ea0] transition-all duration-500 ease-out rounded-[9px]">
+                <span>ASK ABOUT FINANCING</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-500" />
+              </a>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
@@ -427,7 +455,7 @@ export default function Website() {
               href="https://share.google/mycXVKVirWOE7UQSx"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#16215B] font-saira font-semibold tracking-wider hover:bg-[#DC2626] hover:text-white transition-all duration-500 ease-out"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#16215B] font-saira font-semibold tracking-wider hover:bg-[#DC2626] hover:text-white transition-all duration-500 ease-out rounded-[9px]"
             >
               VIEW ALL REVIEWS
               <ArrowRight className="w-4 h-4" />
@@ -493,7 +521,7 @@ export default function Website() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href={`tel:${CONTACT.phone}`}
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out rounded-[9px]"
                 >
                   <Phone className="w-5 h-5" />
                   CALL {CONTACT.phone}
@@ -502,7 +530,7 @@ export default function Website() {
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-[#070889] text-[#070889] font-saira font-semibold tracking-wider hover:bg-[#070889] hover:text-white transition-all duration-500 ease-out"
+                  className="inline-flex items-center justify-center gap-3 px-8 py-4 border-2 border-[#070889] text-[#070889] font-saira font-semibold tracking-wider hover:bg-[#070889] hover:text-white transition-all duration-500 ease-out rounded-[9px]"
                 >
                   BOOK ONLINE
                 </a>
@@ -511,6 +539,13 @@ export default function Website() {
           </div>
         </div>
       </section>
+
+      {/* Sign GIF - Floating between sections */}
+      <div className="relative">
+        <div className="absolute left-1/2 -translate-x-1/2 -top-20 z-10">
+          <Image src="/sign.gif" alt="Lonestar Sign" width={200} height={200} className="w-40 h-auto" unoptimized />
+        </div>
+      </div>
 
       <Footer />
     </div>

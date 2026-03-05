@@ -31,16 +31,16 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+      <section className="relative pt-44 pb-32 lg:pt-52 lg:pb-44 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-[#16215B]">
           <Image
-            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2074"
+            src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072"
             alt="Contact"
             fill
-            className="object-cover opacity-20"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#16215B]/95 via-[#16215B]/85 to-[#16215B]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#16215B] via-[#16215B]/50 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
@@ -78,7 +78,7 @@ export default function ContactPage() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors"
+                        className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors placeholder:text-gray-400"
                         placeholder="Your name"
                       />
                     </div>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                         required
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors"
+                        className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors placeholder:text-gray-400"
                         placeholder="(123) 456-7890"
                       />
                     </div>
@@ -101,7 +101,7 @@ export default function ContactPage() {
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors"
+                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors placeholder:text-gray-400"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                       type="text"
                       value={formData.vehicle}
                       onChange={(e) => setFormData({ ...formData, vehicle: e.target.value })}
-                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors"
+                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors placeholder:text-gray-400"
                       placeholder="e.g. 2018 Ford F-150"
                     />
                   </div>
@@ -124,14 +124,14 @@ export default function ContactPage() {
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors resize-none"
+                      className="w-full px-4 py-4 bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-[#1314CC] transition-colors resize-none placeholder:text-gray-400"
                       placeholder="Tell us about your transmission issue..."
                     />
                   </div>
                   
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#1314CC] text-white font-saira font-semibold tracking-wider hover:bg-[#0e0ea0] transition-all duration-500 ease-out w-full"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#1314CC] text-white font-saira font-semibold tracking-wider hover:bg-[#0e0ea0] transition-all duration-500 ease-out w-full rounded-lg"
                   >
                     SEND MESSAGE
                     <Send className="w-5 h-5" />
@@ -196,7 +196,7 @@ export default function ContactPage() {
                     href={BOOKING_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out w-full"
+                    className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#DC2626] text-white font-saira font-semibold tracking-wider hover:bg-[#b91c1c] transition-all duration-500 ease-out w-full rounded-[9px]"
                   >
                     BOOK APPOINTMENT
                     <ArrowUpRight className="w-5 h-5" />
@@ -225,7 +225,7 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   {[
                     { day: "Monday - Friday", hours: "8:00 AM - 6:00 PM" },
-                    { day: "Saturday", hours: "9:00 AM - 3:00 PM" },
+                    { day: "Saturday", hours: "8:00 AM - 12:00 PM" },
                     { day: "Sunday", hours: "Closed" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center justify-between py-4 border-b border-gray-200">
@@ -266,11 +266,11 @@ export default function ContactPage() {
             Not sure what's wrong with your transmission? Bring it in for a free 25-point inspection. No obligation.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-bold tracking-wider rounded-full hover:bg-gray-100 transition-colors">
+            <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-bold tracking-wider rounded-[9px] hover:bg-gray-100 transition-colors">
               <Phone className="w-5 h-5" />
               <span>CALL NOW</span>
             </a>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-bold tracking-wider rounded-full hover:bg-white hover:text-[#DC2626] transition-colors">
+            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-bold tracking-wider rounded-[9px] hover:bg-white hover:text-[#DC2626] transition-colors">
               BOOK ONLINE
               <ArrowUpRight className="w-5 h-5" />
             </a>

@@ -136,7 +136,7 @@ export function Footer() {
         <div className="py-12 flex items-center justify-center border-t border-white/20">
           <p className="text-white/40 text-sm w-[250px] whitespace-nowrap">© {new Date().getFullYear()} Lonestar Transmissions</p>
           <div className="flex-1 flex justify-center">
-            <Image src="/logo.png" alt="Lonestar Transmissions" width={256} height={100} className="h-64 w-auto" />
+            <Image src="/logo_transparent.png" alt="Lonestar Transmissions" width={200} height={80} className="h-32 w-auto" />
           </div>
           <p className="text-white/40 text-sm w-[250px] text-right">Crosby, Texas</p>
         </div>
