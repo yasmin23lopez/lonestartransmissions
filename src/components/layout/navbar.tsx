@@ -85,7 +85,7 @@ export function Navbar() {
   return (
     <>
       {/* Announcement Bar */}
-      <div className={`fixed top-0 left-0 right-0 z-50 h-10 flex items-center justify-center transition-colors duration-300 ${
+      <div className={`fixed top-0 left-0 right-0 z-50 h-12 flex items-center justify-center transition-colors duration-300 ${
         scrolled ? "bg-[#DC2626]" : "bg-white"
       }`}>
         <div className="flex items-center gap-4 max-w-[1600px] w-full px-6 lg:px-12">
@@ -106,11 +106,11 @@ export function Navbar() {
                 transition={{ duration: 0.3 }}
                 className="flex items-center gap-2 text-center"
               >
-                <span className={`text-sm font-semibold ${scrolled ? "text-white" : "text-[#16215B]"}`}>
+                <span className={`text-sm font-bold uppercase ${scrolled ? "text-white" : "text-[#16215B]"}`}>
                   {ANNOUNCEMENTS[currentAnnouncement].text}
                 </span>
                 {ANNOUNCEMENTS[currentAnnouncement].subtext && (
-                  <span className={`text-xs ${scrolled ? "text-white/70" : "text-gray-500"}`}>
+                  <span className={`text-xs uppercase ${scrolled ? "text-white/70" : "text-gray-500"}`}>
                     {ANNOUNCEMENTS[currentAnnouncement].subtext}
                   </span>
                 )}
@@ -128,7 +128,7 @@ export function Navbar() {
       </div>
 
       <motion.nav
-        className={`fixed top-10 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-12 left-0 right-0 z-50 transition-all duration-300 ${
           isWhiteMode 
             ? "bg-white border-b border-gray-200" 
             : isRedMode

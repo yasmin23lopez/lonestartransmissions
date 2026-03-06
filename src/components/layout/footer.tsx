@@ -31,7 +31,11 @@ function YelpIcon({ className }: { className?: string }) {
 
 export function Footer() {
   return (
-    <footer className="bg-[#070889] border-t-4 border-[#DC2626]">
+    <footer className="bg-[#070889] border-t-4 border-[#DC2626] relative pt-16">
+      {/* Sign GIF - Centered at top, overlapping */}
+      <div className="absolute left-1/2 -translate-x-1/2 -top-16 z-10">
+        <Image src="/sign.gif" alt="Lonestar Sign" width={160} height={160} className="w-32 h-auto" unoptimized />
+      </div>
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         {/* Main Footer Content */}
         <div className="flex flex-col md:flex-row py-16">

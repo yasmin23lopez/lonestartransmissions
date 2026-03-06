@@ -41,6 +41,11 @@ export default function Website() {
           </span>
         </div>
 
+        {/* Sign GIF - Bottom Left */}
+        <div className="absolute left-6 lg:left-12 bottom-6 lg:bottom-12 z-20 hidden md:block">
+          <Image src="/sign.gif" alt="Lonestar Sign" width={160} height={160} className="w-32 h-auto" unoptimized />
+        </div>
+
         <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 lg:px-12 pt-12 lg:pt-20 text-center flex-1 flex flex-col justify-center">
           {/* Top Label */}
           <motion.span
@@ -358,7 +363,7 @@ export default function Website() {
           </div>
 
           {/* Build Card */}
-          <div className="grid lg:grid-cols-2 min-h-[400px]">
+          <div className="grid lg:grid-cols-2 min-h-[400px] rounded-2xl overflow-hidden">
             {/* Content Card */}
             <div className={`bg-[#E8EDF5] p-10 lg:p-12 flex flex-col justify-between order-2 lg:order-1 ${!TESTIMONIALS[currentTestimonial].image ? 'lg:col-span-2' : ''}`}>
               {/* Top Labels */}
@@ -512,8 +517,8 @@ export default function Website() {
 
             {/* Need More Help Card */}
             <div className="lg:sticky lg:top-32 lg:self-start">
-              <h3 className="text-4xl lg:text-5xl font-[family-name:var(--font-saira)] font-black text-[#070889] leading-[0.9] uppercase mb-6">
-                READY TO GET STARTED?
+              <h3 className="text-3xl lg:text-4xl font-[family-name:var(--font-saira)] font-black text-[#070889] leading-[0.9] uppercase mb-6">
+                READY TO<br />GET STARTED?
               </h3>
               <p className="text-gray-500 mb-8 leading-relaxed">
                 Call us for a free diagnostic or book your appointment online. We'll take care of the rest.
@@ -539,13 +544,6 @@ export default function Website() {
           </div>
         </div>
       </section>
-
-      {/* Sign GIF - Floating between sections */}
-      <div className="relative">
-        <div className="absolute left-1/2 -translate-x-1/2 -top-20 z-10">
-          <Image src="/sign.gif" alt="Lonestar Sign" width={200} height={200} className="w-40 h-auto" unoptimized />
-        </div>
-      </div>
 
       <Footer />
     </div>
