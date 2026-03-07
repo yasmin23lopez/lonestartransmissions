@@ -309,7 +309,7 @@ export default function AboutPage() {
             READY TO GET STARTED?
           </h2>
           <p className="text-white/80 text-xl mb-10 max-w-2xl mx-auto">
-            Call us for a free diagnostic or book your appointment online. We'll take care of the rest.
+            Call us for a free diagnostic or book your appointment online.<br />We'll take care of the rest.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-saira font-semibold tracking-wider hover:bg-gray-100 transition-all duration-500 ease-out rounded-[9px]">

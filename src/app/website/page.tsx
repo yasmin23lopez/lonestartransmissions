@@ -521,7 +521,7 @@ export default function Website() {
                 READY TO<br />GET STARTED?
               </h3>
               <p className="text-gray-500 mb-8 leading-relaxed">
-                Call us for a free diagnostic or book your appointment online. We'll take care of the rest.
+                Call us for a free diagnostic or book your appointment online. <br />We'll take care of the rest.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
