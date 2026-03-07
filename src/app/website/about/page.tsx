@@ -112,27 +112,34 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Grid sin padding - divisores de borde a borde */}
-        <div className="min-w-100 mx-auto border-t border-gray-200">
+        {/* Grid con divisores */}
+        <div className="mx-auto border-t border-gray-200">
           <div className="grid grid-cols-2 md:grid-cols-3">
             {TEAM_MEMBERS.map((member, i) => {
-              const isNotLastCol = i % 3 !== 2;
-              const isFirstRow = i < 3;
+              const totalMembers = TEAM_MEMBERS.length; // 6
+              // Mobile (2 cols): última fila es índices 4, 5
+              // Desktop (3 cols): última fila es índices 3, 4, 5
+              const isLastColMobile = i % 2 === 1;
+              const isLastColDesktop = i % 3 === 2;
+              const isLastRowMobile = i >= 4; // índices 4 y 5
+              const isLastRowDesktop = i >= 3; // índices 3, 4, 5
               
               return (
                 <FadeIn key={i} delay={i * 0.1}>
                   <div className={`
-                    ${isNotLastCol ? 'border-r border-gray-200' : ''} 
-                    ${isFirstRow ? 'border-b border-gray-200' : ''}`}
-                  >
+                    ${!isLastColMobile ? 'border-r border-gray-200' : ''} 
+                    ${isLastColMobile && !isLastColDesktop ? 'md:border-r md:border-gray-200' : ''} 
+                    ${!isLastRowMobile ? 'border-b border-gray-200' : ''} 
+                    ${isLastRowMobile && !isLastRowDesktop ? 'md:border-b md:border-gray-200' : ''}
+                  `}>
                     <div className="p-6 lg:p-8">
-                      <div className="relative rounded-2xl overflow-hidden mb-4 border border-gray-200">
+                      <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden mb-4 border border-gray-200 bg-gray-100 [&>img]:!h-full">
                         <Image
                           src={member.image}
                           alt={member.name}
                           width={400}
-                          height={500}
-                          className="w-full h-auto object-cover"
+                          height={533}
+                          className="w-full h-full object-cover object-top"
                         />
                       </div>
                       <h3 className="font-bold text-[#16215B] text-lg">{member.name}</h3>

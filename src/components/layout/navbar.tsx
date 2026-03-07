@@ -37,6 +37,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [servicesHovered, setServicesHovered] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [currentAnnouncement, setCurrentAnnouncement] = useState(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
@@ -331,32 +332,118 @@ export function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-[#1314CC] lg:hidden flex flex-col items-center justify-center"
+            className="fixed inset-0 z-40 bg-white lg:hidden flex flex-col pt-36"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="flex flex-col items-center gap-6">
-              {NAV_ITEMS.map((item, i) => (
-                <motion.div key={item.label} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="text-3xl font-saira font-black text-white uppercase"
+            <div className="flex-1 px-6 overflow-y-auto">
+              <AnimatePresence mode="wait">
+                {!mobileServicesOpen ? (
+                  // Main Menu
+                  <motion.div
+                    key="main-menu"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex flex-col"
                   >
-                    {item.label}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.a
+                    {NAV_ITEMS.map((item, i) => (
+                      <motion.div 
+                        key={item.label} 
+                        initial={{ opacity: 0, y: 10 }} 
+                        animate={{ opacity: 1, y: 0 }} 
+                        transition={{ delay: i * 0.05 }}
+                        className="border-b border-gray-100"
+                      >
+                        {item.hasDropdown ? (
+                          <button
+                            onClick={() => setMobileServicesOpen(true)}
+                            className="w-full flex items-center justify-between py-5 text-left"
+                          >
+                            <span className="text-xl font-saira font-semibold text-[#16215B] uppercase">{item.label}</span>
+                            <ChevronRight className="w-5 h-5 text-gray-400" />
+                          </button>
+                        ) : (
+                          <Link
+                            href={item.href}
+                            onClick={() => setMenuOpen(false)}
+                            className="block py-5"
+                          >
+                            <span className="text-xl font-saira font-semibold text-[#16215B] uppercase">{item.label}</span>
+                          </Link>
+                        )}
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                ) : (
+                  // Services Submenu
+                  <motion.div
+                    key="services-menu"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 20 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex flex-col"
+                  >
+                    <button
+                      onClick={() => setMobileServicesOpen(false)}
+                      className="flex items-center gap-2 py-4 text-[#1314CC] mb-2"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                      <span className="text-sm font-semibold uppercase">Back to Menu</span>
+                    </button>
+                    <h3 className="text-xs font-bold tracking-[0.2em] text-gray-400 uppercase mb-4">Services</h3>
+                    {SERVICE_ITEMS.map((service, i) => (
+                      <motion.div
+                        key={service.label}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.05 }}
+                      >
+                        <Link
+                          href={service.href}
+                          onClick={() => {
+                            setMobileServicesOpen(false);
+                            setMenuOpen(false);
+                          }}
+                          className="flex items-center gap-4 py-4 border-b border-gray-100"
+                        >
+                          <div className="w-10 h-10 rounded-lg bg-[#1314CC]/10 flex items-center justify-center">
+                            <service.icon className="w-5 h-5 text-[#1314CC]" />
+                          </div>
+                          <div>
+                            <p className="font-saira font-semibold text-[#16215B]">{service.label}</p>
+                            {service.subtitle && (
+                              <p className="text-sm text-gray-400">{service.subtitle}</p>
+                            )}
+                          </div>
+                        </Link>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom CTA */}
+            <div className="px-6 py-6 border-t border-gray-100 bg-white">
+              <a
                 href="tel:281-462-4970"
-                className="mt-8 px-8 py-4 bg-white text-[#16215B] font-bold rounded-full"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
+                className="flex items-center justify-center gap-3 w-full py-4 bg-[#DC2626] text-white font-saira font-semibold rounded-[9px]"
               >
-                CALL NOW
-              </motion.a>
+                <Phone className="w-5 h-5" />
+                CALL 281-462-4970
+              </a>
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 w-full py-4 mt-3 bg-[#1314CC] text-white font-saira font-semibold rounded-[9px]"
+              >
+                BOOK APPOINTMENT
+              </a>
             </div>
           </motion.div>
         )}

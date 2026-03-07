@@ -41,9 +41,9 @@ export default function Website() {
           </span>
         </div>
 
-        {/* Sign GIF - Bottom Left */}
+        {/* Sign - Bottom Left */}
         <div className="absolute left-6 lg:left-12 bottom-6 lg:bottom-12 z-20 hidden md:block">
-          <Image src="/sign.gif" alt="Lonestar Sign" width={160} height={160} className="w-32 h-auto" unoptimized />
+          <Image src="/sign.png" alt="Lonestar Sign" width={160} height={160} className="w-32 h-auto" />
         </div>
 
         <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 lg:px-12 pt-12 lg:pt-20 text-center flex-1 flex flex-col justify-center">
@@ -74,14 +74,14 @@ export default function Website() {
             initial={{ opacity: 0, y: 40 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative flex items-center justify-center -mt-24 lg:-mt-40"
+            className="relative flex items-center justify-center -mt-13 lg:-mt-32"
           >
             <Image 
               src="/transmissions_hero.png" 
               alt="Diesel Transmissions" 
-              width={900} 
-              height={400}
-              className="w-full max-w-[800px] h-auto"
+              width={1300} 
+              height={700}
+              className="w-full max-w-[1100px] h-auto"
             />
           </motion.div>
 

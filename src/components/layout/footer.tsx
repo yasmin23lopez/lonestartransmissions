@@ -34,7 +34,7 @@ export function Footer() {
     <footer className="bg-[#070889] border-t-4 border-[#DC2626] relative pt-16">
       {/* Sign GIF - Centered at top, overlapping */}
       <div className="absolute left-1/2 -translate-x-1/2 -top-16 z-10">
-        <Image src="/sign.gif" alt="Lonestar Sign" width={160} height={160} className="w-32 h-auto" unoptimized />
+        <Image src="/sign.png" alt="Lonestar Sign" width={160} height={160} className="w-32 h-auto" />
       </div>
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         {/* Main Footer Content */}
@@ -137,12 +137,12 @@ export function Footer() {
         </div>
 
         {/* Bottom: Copyright | Logo | Location */}
-        <div className="py-12 flex items-center justify-center border-t border-white/20">
-          <p className="text-white/40 text-sm w-[250px] whitespace-nowrap">© {new Date().getFullYear()} Lonestar Transmissions</p>
-          <div className="flex-1 flex justify-center">
-            <Image src="/logo_transparent.png" alt="Lonestar Transmissions" width={200} height={80} className="h-32 w-auto" />
+        <div className="py-12 flex flex-col md:flex-row items-center justify-center gap-6 border-t border-white/20">
+          <p className="text-white/40 text-sm order-2 md:order-1 md:w-[250px] whitespace-nowrap">© {new Date().getFullYear()} Lonestar Transmissions</p>
+          <div className="flex-1 flex justify-center order-1 md:order-2">
+            <Image src="/logo_transparent.png" alt="Lonestar Transmissions" width={200} height={80} className="h-24 md:h-32 w-auto" />
           </div>
-          <p className="text-white/40 text-sm w-[250px] text-right">Crosby, Texas</p>
+          <p className="text-white/40 text-sm order-3 md:w-[250px] md:text-right">Crosby, Texas</p>
         </div>
       </div>
     </footer>
