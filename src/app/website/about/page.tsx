@@ -11,7 +11,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 const TEAM_MEMBERS = [
-  { name: "Armando", role: "Founder & Owner", image: "/armando_photo.jpg" },
+  { name: "Armando Lopez", role: "Founder & Owner", image: "/armando_photo.jpg" },
   { name: "Juvenal Toledo", role: "Shop Manager", image: "/juvenal_photo.jpg" },
   { name: "Gerardo Campos", role: "R&R Specialist", image: "/gerardo_photo.jpg" },
   { name: "German Guerrero", role: "High Tech Mechanic", image: "/german_photo.jpg" },
