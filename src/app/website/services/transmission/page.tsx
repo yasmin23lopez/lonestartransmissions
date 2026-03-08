@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowUpRight, CheckCircle, Phone, Clock, Shield, Award, Wrench } from "lucide-react";
@@ -8,7 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { FadeIn } from "@/components/ui";
 import { TransmissionIcon } from "@/components/icons";
-import { BOOKING_URL, CONTACT } from "@/lib/constants";
+import { getSiteSettings } from "@/sanity/lib/fetch";
 
 const SERVICE = {
   title: "TRANSMISSION",
@@ -30,7 +28,6 @@ const SERVICE = {
     { name: "CVT Transmission", desc: "Specialized service for continuously variable transmissions" },
     { name: "Performance Builds", desc: "Upgraded components for high-performance applications" },
   ],
-  warningSignsTitle: "Signs Your Transmission Needs Attention",
   warningSigns: [
     "Slipping gears or delayed engagement",
     "Grinding or shaking when shifting",
@@ -53,7 +50,12 @@ const SERVICE = {
   ],
 };
 
-export default function TransmissionPage() {
+export default async function TransmissionPage() {
+  const settings = await getSiteSettings();
+  
+  const phone = settings?.phone || "281-462-4970";
+  const bookingUrl = settings?.bookingUrl || "https://booking.shopgenie.io/?shop=lonestartransmissions-4250819731&preselect_account=lonestartransmissions-4250819473";
+
   return (
     <div className="min-h-screen bg-white font-[family-name:var(--font-funnel)] overflow-x-hidden">
       <Navbar />
@@ -61,15 +63,9 @@ export default function TransmissionPage() {
       {/* Hero */}
       <section className="relative pt-44 pb-32 lg:pt-52 lg:pb-44 overflow-hidden">
         <div className="absolute inset-0 bg-[#16215B]">
-          <Image
-            src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072"
-            alt={SERVICE.title}
-            fill
-            className="object-cover"
-          />
+          <Image src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072" alt={SERVICE.title} fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#16215B] via-[#16215B]/50 to-transparent" />
         </div>
-
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
           <Link href="/website#services" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> All Services
@@ -79,9 +75,7 @@ export default function TransmissionPage() {
               <TransmissionIcon className="w-8 h-8 text-white" />
             </div>
           </div>
-          <h1 className="text-5xl lg:text-8xl font-[family-name:var(--font-saira)] font-black text-white leading-[0.85] uppercase mb-4">
-            {SERVICE.title}
-          </h1>
+          <h1 className="text-5xl lg:text-8xl font-saira font-black text-white leading-[0.85] uppercase mb-4">{SERVICE.title}</h1>
           <p className="text-white/70 text-xl max-w-2xl">{SERVICE.subtitle}</p>
         </div>
       </section>
@@ -91,12 +85,9 @@ export default function TransmissionPage() {
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
             <div>
-              <FadeIn>
-                <p className="text-xl text-gray-600 mb-12 leading-relaxed">{SERVICE.description}</p>
-              </FadeIn>
-              
+              <FadeIn><p className="text-xl text-gray-600 mb-12 leading-relaxed">{SERVICE.description}</p></FadeIn>
               <FadeIn delay={0.1}>
-                <h3 className="text-2xl font-[family-name:var(--font-saira)] font-bold text-[#070889] uppercase mb-6">Our Services</h3>
+                <h3 className="text-2xl font-saira font-bold text-[#070889] uppercase mb-6">Our Services</h3>
                 <div className="grid grid-cols-2 gap-3">
                   {SERVICE.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-2 p-3 bg-gray-50 rounded-xl">
@@ -106,9 +97,8 @@ export default function TransmissionPage() {
                   ))}
                 </div>
               </FadeIn>
-
               <FadeIn delay={0.15}>
-                <h3 className="text-2xl font-[family-name:var(--font-saira)] font-bold text-[#070889] uppercase mb-6 mt-12">Transmission Types We Service</h3>
+                <h3 className="text-2xl font-saira font-bold text-[#070889] uppercase mb-6 mt-12">Transmission Types We Service</h3>
                 <div className="space-y-4">
                   {SERVICE.transmissionTypes.map((type, i) => (
                     <div key={i} className="p-4 bg-gray-50 rounded-xl">
@@ -119,10 +109,9 @@ export default function TransmissionPage() {
                 </div>
               </FadeIn>
             </div>
-
             <div>
               <FadeIn delay={0.2}>
-                <h3 className="text-2xl font-[family-name:var(--font-saira)] font-bold text-[#070889] uppercase mb-6">{SERVICE.warningSignsTitle}</h3>
+                <h3 className="text-2xl font-saira font-bold text-[#070889] uppercase mb-6">Signs Your Transmission Needs Attention</h3>
                 <div className="space-y-3 mb-12">
                   {SERVICE.warningSigns.map((sign, i) => (
                     <div key={i} className="flex items-center gap-3 p-4 bg-red-50 rounded-xl border border-red-100">
@@ -132,19 +121,16 @@ export default function TransmissionPage() {
                   ))}
                 </div>
               </FadeIn>
-
               <FadeIn delay={0.3}>
                 <div className="bg-[#070889] rounded-2xl p-8">
                   <h4 className="text-xl font-bold text-white mb-4">Transmission problems?</h4>
                   <p className="text-white/60 mb-6">Don't wait until it's too late. Get a free diagnostic and honest assessment from the experts.</p>
                   <div className="flex flex-wrap gap-4">
-                    <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] text-white font-saira font-semibold rounded-[9px] hover:bg-[#b91c1c] transition-all duration-500 ease-out">
-                      <Phone className="w-4 h-4" />
-                      Call Now
+                    <a href={`tel:${phone}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] text-white font-saira font-semibold rounded-[9px] hover:bg-[#b91c1c] transition-all duration-500 ease-out">
+                      <Phone className="w-4 h-4" />Call Now
                     </a>
-                    <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#1314CC] text-white font-saira font-semibold rounded-[9px] hover:bg-[#0e0ea0] transition-all duration-500 ease-out">
-                      Book Online
-                      <ArrowUpRight className="w-4 h-4" />
+                    <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-6 py-3 bg-[#1314CC] text-white font-saira font-semibold rounded-[9px] hover:bg-[#0e0ea0] transition-all duration-500 ease-out">
+                      Book Online<ArrowUpRight className="w-4 h-4" />
                     </a>
                   </div>
                 </div>
@@ -157,11 +143,7 @@ export default function TransmissionPage() {
       {/* Benefits */}
       <section className="py-24 lg:py-32 bg-[#FAFAFA]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <FadeIn>
-            <div className="text-center mb-12">
-              <h3 className="text-3xl lg:text-4xl font-[family-name:var(--font-saira)] font-bold text-[#070889] uppercase">The Lonestar Difference</h3>
-            </div>
-          </FadeIn>
+          <FadeIn><div className="text-center mb-12"><h3 className="text-3xl lg:text-4xl font-saira font-bold text-[#070889] uppercase">The Lonestar Difference</h3></div></FadeIn>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {SERVICE.benefits.map((benefit, i) => (
               <FadeIn key={i} delay={i * 0.1}>
@@ -182,9 +164,7 @@ export default function TransmissionPage() {
       <section className="py-24 lg:py-32">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mx-auto">
-            <FadeIn>
-              <h3 className="text-3xl font-[family-name:var(--font-saira)] font-bold text-[#070889] uppercase mb-8 text-center">Common Questions</h3>
-            </FadeIn>
+            <FadeIn><h3 className="text-3xl font-saira font-bold text-[#070889] uppercase mb-8 text-center">Common Questions</h3></FadeIn>
             <div className="space-y-6">
               {SERVICE.faqs.map((faq, i) => (
                 <FadeIn key={i} delay={i * 0.1}>
@@ -202,20 +182,14 @@ export default function TransmissionPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 bg-[#DC2626]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-4xl lg:text-6xl font-[family-name:var(--font-saira)] font-black text-white leading-[0.9] uppercase mb-6">
-            TRANSMISSION EXPERTS
-          </h2>
-          <p className="text-white/80 text-xl mb-10 max-w-2xl mx-auto">
-            20+ years of experience. Thousands of satisfied customers. Free diagnostic. Free towing with major repairs.
-          </p>
+          <h2 className="text-4xl lg:text-6xl font-saira font-black text-white leading-[0.9] uppercase mb-6">TRANSMISSION EXPERTS</h2>
+          <p className="text-white/80 text-xl mb-10 max-w-2xl mx-auto">20+ years of experience. Thousands of satisfied customers. Free diagnostic. Free towing with major repairs.</p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href={`tel:${CONTACT.phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-saira font-semibold tracking-wider rounded-[9px] hover:bg-gray-100 transition-all duration-500 ease-out">
-              <Phone className="w-5 h-5" />
-              <span>CALL {CONTACT.phone}</span>
+            <a href={`tel:${phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-saira font-semibold tracking-wider rounded-[9px] hover:bg-gray-100 transition-all duration-500 ease-out">
+              <Phone className="w-5 h-5" /><span>CALL {phone}</span>
             </a>
-            <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-saira font-semibold tracking-wider rounded-[9px] hover:bg-white hover:text-[#DC2626] transition-all duration-500 ease-out">
-              BOOK ONLINE
-              <ArrowUpRight className="w-5 h-5" />
+            <a href={bookingUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-saira font-semibold tracking-wider rounded-[9px] hover:bg-white hover:text-[#DC2626] transition-all duration-500 ease-out">
+              BOOK ONLINE<ArrowUpRight className="w-5 h-5" />
             </a>
           </div>
         </div>
