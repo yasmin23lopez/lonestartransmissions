@@ -17,7 +17,7 @@ const FALLBACK_TEAM = [
 ];
 
 const FALLBACK_FAQS = [
-  { _id: '1', question: "Is the diagnostic really free?", answer: "Yes! We offer a completely free diagnostic with a 25-point inspection to identify any transmission issues.", order: 1 },
+  { _id: '1', question: "Is the diagnostic really free?", answer: "Yes, We offer a completely free diagnostic with a 25-point inspection to identify any transmission issues.", order: 1 },
   { _id: '2', question: "Do you offer free towing?", answer: "Yes, we offer free towing for transmission repairs within our service area. Call us for details.", order: 2 },
   { _id: '3', question: "Do you offer financing?", answer: "Yes, we offer flexible financing options to help you get your car fixed without breaking the bank.", order: 3 },
   { _id: '4', question: "How long does a repair take?", answer: "Most repairs are completed within 1-3 days. We'll give you an accurate timeline after the diagnostic.", order: 4 },
