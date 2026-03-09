@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# migration scripts (contain sensitive data, already executed)
+/scripts/

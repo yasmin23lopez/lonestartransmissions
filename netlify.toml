@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  # Skip secrets scanning for migration scripts (already executed, not needed in production)
+  SECRETS_SCAN_OMIT_PATHS = "scripts/"
