@@ -6,7 +6,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { FadeIn } from "@/components/ui";
 import { HeatACIcon } from "@/components/icons";
-import { getSiteSettings } from "@/sanity/lib/fetch";
+import { getSiteSettings, getServiceBySlug } from "@/sanity/lib/fetch";
 
 const SERVICE = {
   title: "HEAT OR A/C",
@@ -42,10 +42,14 @@ const SERVICE = {
 };
 
 export default async function HVACPage() {
-  const settings = await getSiteSettings();
+  const [settings, service] = await Promise.all([
+    getSiteSettings(),
+    getServiceBySlug("hvac"),
+  ]);
   
   const phone = settings?.phone || "281-462-4970";
   const bookingUrl = settings?.bookingUrl || "https://booking.shopgenie.io/?shop=lonestartransmissions-4250819731&preselect_account=lonestartransmissions-4250819473";
+  const heroImage = service?.image || "https://images.unsplash.com/photo-1625047509248-ec889cbff17f?q=80&w=2070";
 
   return (
     <div className="min-h-screen bg-white font-[family-name:var(--font-funnel)] overflow-x-hidden">
@@ -54,7 +58,7 @@ export default async function HVACPage() {
       {/* Hero */}
       <section className="relative pt-44 pb-32 lg:pt-52 lg:pb-44 overflow-hidden">
         <div className="absolute inset-0 bg-[#16215B]">
-          <Image src="https://images.unsplash.com/photo-1625047509248-ec889cbff17f?q=80&w=2070" alt={SERVICE.title} fill className="object-cover" />
+          <Image src={heroImage} alt={SERVICE.title} fill className="object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#16215B] via-[#16215B]/50 to-transparent" />
         </div>
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">

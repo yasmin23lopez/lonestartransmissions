@@ -2,6 +2,7 @@ import { client } from './client'
 import {
   siteSettingsQuery,
   servicesQuery,
+  serviceBySlugQuery,
   teamMembersQuery,
   faqsQuery,
   financingPartnersQuery,
@@ -104,6 +105,10 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
 
 export async function getServices(): Promise<Service[]> {
   return client.fetch(servicesQuery, {}, { next: { revalidate: 60 } })
+}
+
+export async function getServiceBySlug(slug: string): Promise<Service | null> {
+  return client.fetch(serviceBySlugQuery, { slug }, { next: { revalidate: 60 } })
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
