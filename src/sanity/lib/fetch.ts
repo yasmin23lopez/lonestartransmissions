@@ -37,6 +37,13 @@ export interface Service {
   icon: string
   image: string
   order: number
+  features?: string[]
+  warningSigns?: string[]
+  extraSections?: { title: string; items: { name: string; desc: string }[] }[]
+  benefits?: { title: string; desc: string }[]
+  faqs?: { question: string; answer: string }[]
+  ctaTitle?: string
+  ctaSubtitle?: string
 }
 
 export interface TeamMember {
@@ -129,14 +136,15 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 
 // Combined fetch for pages that need multiple data types
 export async function getHomePageData() {
-  const [settings, services, testimonials, faqs, financingPartners] = await Promise.all([
+  const [settings, services, testimonials, faqs, financingPartners, pageContent] = await Promise.all([
     getSiteSettings(),
     getServices(),
     getTestimonials(),
     getFAQs(),
     getFinancingPartners(),
+    getPageContent('home'),
   ])
-  return { settings, services, testimonials, faqs, financingPartners }
+  return { settings, services, testimonials, faqs, financingPartners, pageContent }
 }
 
 export async function getAboutPageData() {

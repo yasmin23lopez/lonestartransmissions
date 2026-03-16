@@ -72,7 +72,7 @@ export const testimonialsQuery = groq`*[_type == "testimonial"] | order(order as
   order
 }`
 
-// Service by Slug
+// Service by Slug (full detail)
 export const serviceBySlugQuery = groq`*[_type == "service" && slug.current == $slug][0]{
   _id,
   title,
@@ -81,6 +81,25 @@ export const serviceBySlugQuery = groq`*[_type == "service" && slug.current == $
   slug,
   icon,
   "image": image.asset->url,
+  features,
+  warningSigns,
+  extraSections[]{
+    title,
+    items[]{
+      name,
+      desc
+    }
+  },
+  benefits[]{
+    title,
+    desc
+  },
+  faqs[]{
+    question,
+    answer
+  },
+  ctaTitle,
+  ctaSubtitle,
   order
 }`
 

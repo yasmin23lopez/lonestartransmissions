@@ -25,7 +25,7 @@ export const service = defineType({
       name: 'subtitle',
       title: 'Subtitle',
       type: 'string',
-      description: 'Optional subtitle (e.g., "Free Diagnostic")',
+      description: 'Short subtitle (e.g., "Repair & Rebuild")',
     }),
     defineField({
       name: 'description',
@@ -34,48 +34,112 @@ export const service = defineType({
       rows: 3,
     }),
     defineField({
-      name: 'heroImage',
-      title: 'Hero Image',
+      name: 'image',
+      title: 'Service Image',
       type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'cardImage',
-      title: 'Card Image (Home Page)',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
+      description: 'Main image used in hero and slider',
     }),
     defineField({
       name: 'icon',
       title: 'Icon Name',
       type: 'string',
-      description: 'Icon identifier (diagnostic, oil-change, brakes, hvac, transmission)',
+      description: 'Component icon name',
       options: {
         list: [
-          { title: 'Diagnostic', value: 'diagnostic' },
-          { title: 'Oil Change', value: 'oil-change' },
-          { title: 'Brakes', value: 'brakes' },
-          { title: 'HVAC', value: 'hvac' },
-          { title: 'Transmission', value: 'transmission' },
+          { title: 'Car Diagnostic', value: 'CarDiagnosticIcon' },
+          { title: 'Oil Change', value: 'OilChangeIcon' },
+          { title: 'Brakes', value: 'BrakesIcon' },
+          { title: 'Heat/AC', value: 'HeatACIcon' },
+          { title: 'Transmission', value: 'TransmissionIcon' },
         ],
       },
     }),
     defineField({
       name: 'features',
-      title: 'Features',
+      title: 'Features / Services Included',
       type: 'array',
       of: [{ type: 'string' }],
-      description: 'List of service features/benefits',
+      description: 'List of service features shown on the detail page',
     }),
     defineField({
-      name: 'content',
-      title: 'Full Content',
+      name: 'warningSigns',
+      title: 'Warning Signs',
       type: 'array',
-      of: [{ type: 'block' }],
+      of: [{ type: 'string' }],
+      description: 'Warning signs that indicate this service is needed',
+    }),
+    defineField({
+      name: 'extraSections',
+      title: 'Extra Sections',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'extraSection',
+          title: 'Section',
+          fields: [
+            defineField({ name: 'title', title: 'Title', type: 'string' }),
+            defineField({
+              name: 'items',
+              title: 'Items',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  fields: [
+                    defineField({ name: 'name', title: 'Name', type: 'string' }),
+                    defineField({ name: 'desc', title: 'Description', type: 'string' }),
+                  ],
+                },
+              ],
+            }),
+          ],
+        },
+      ],
+      description: 'Additional sections like "Transmission Types", "Oil Types", etc.',
+    }),
+    defineField({
+      name: 'benefits',
+      title: 'Benefits',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'title', title: 'Title', type: 'string' }),
+            defineField({ name: 'desc', title: 'Description', type: 'string' }),
+          ],
+        },
+      ],
+      description: 'Benefits shown in the grid (4 items)',
+    }),
+    defineField({
+      name: 'faqs',
+      title: 'Service FAQs',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            defineField({ name: 'question', title: 'Question', type: 'string' }),
+            defineField({ name: 'answer', title: 'Answer', type: 'text' }),
+          ],
+        },
+      ],
+      description: 'FAQs specific to this service',
+    }),
+    defineField({
+      name: 'ctaTitle',
+      title: 'CTA Section Title',
+      type: 'string',
+      description: 'Title for the bottom CTA section',
+    }),
+    defineField({
+      name: 'ctaSubtitle',
+      title: 'CTA Section Subtitle',
+      type: 'text',
+      description: 'Subtitle for the bottom CTA section',
     }),
     defineField({
       name: 'order',

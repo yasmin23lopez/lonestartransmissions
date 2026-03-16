@@ -4,12 +4,12 @@ import { HeroSection, ServicesSlider, FinancingSection, TestimonialsSection, FAQ
 import { getHomePageData } from "@/sanity/lib/fetch";
 
 export default async function Home() {
-  const { settings, services, testimonials, faqs, financingPartners } = await getHomePageData();
+  const { settings, services, testimonials, faqs, financingPartners, pageContent } = await getHomePageData();
 
   return (
     <div className="min-h-screen bg-white font-[family-name:var(--font-funnel)] overflow-x-hidden">
       <Navbar />
-      <HeroSection settings={settings} />
+      <HeroSection settings={settings} pageContent={pageContent} />
       <ServicesSlider services={services} settings={settings} />
       <FinancingSection partners={financingPartners} settings={settings} />
       <TestimonialsSection testimonials={testimonials} />

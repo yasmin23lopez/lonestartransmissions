@@ -2,14 +2,17 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import type { SiteSettings } from "@/sanity/lib/fetch";
+import type { SiteSettings, PageContent } from "@/sanity/lib/fetch";
 
 interface HeroSectionProps {
   settings: SiteSettings | null;
+  pageContent?: PageContent | null;
 }
 
-export function HeroSection({ settings }: HeroSectionProps) {
+export function HeroSection({ settings, pageContent }: HeroSectionProps) {
   const bookingUrl = settings?.bookingUrl || "https://booking.shopgenie.io/?shop=lonestartransmissions-4250819731&preselect_account=lonestartransmissions-4250819473";
+  const heroLabel = pageContent?.hero?.label || "CROSBY, TEXAS — #1 CHOICE";
+  const heroTitle = pageContent?.hero?.title || "TRANSMISSION EXPERTS WITH 20+ YEARS EXP.";
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#DC2626] pt-24">
@@ -33,7 +36,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
           transition={{ duration: 0.6 }}
           className="text-white/100 text-[15px] tracking-[0.1em] font-bold font-saira uppercase mb-4"
         >
-          CROSBY, TEXAS — #1 CHOICE
+          {heroLabel}
         </motion.span>
 
         {/* Main Title */}
@@ -43,9 +46,15 @@ export function HeroSection({ settings }: HeroSectionProps) {
           transition={{ duration: 0.8 }}
           className="italic text-[clamp(2.8rem,7vw,6.5rem)] font-saira font-black text-white leading-[0.85] uppercase mb-6 lg:mb-10"
         >
-          TRANSMISSION EXPERTS<br/>
-          <span className="italic font-light"> WITH </span> 
-          20+ YEARS EXP.
+          {heroTitle.includes("WITH") ? (
+            <>
+              {heroTitle.split("WITH")[0].trim()}<br/>
+              <span className="italic font-light"> WITH </span>
+              {heroTitle.split("WITH")[1].trim()}
+            </>
+          ) : (
+            heroTitle
+          )}
         </motion.h1>
 
         {/* Transmission Images */}
