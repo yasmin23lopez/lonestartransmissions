@@ -71,7 +71,7 @@ export default async function FAQPage() {
               <Phone className="w-5 h-5" />
               <span>CALL NOW</span>
             </a>
-            <a href="/website/contact" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-bold tracking-wider rounded-full hover:bg-white hover:text-[#DC2626] transition-colors">
+            <a href="/contact" className="inline-flex items-center gap-3 px-10 py-5 border-2 border-white text-white font-bold tracking-wider rounded-full hover:bg-white hover:text-[#DC2626] transition-colors">
               CONTACT US
               <ArrowUpRight className="w-5 h-5" />
             </a>

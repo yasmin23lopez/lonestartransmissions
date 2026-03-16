@@ -10,19 +10,19 @@ import { CarDiagnosticIcon, OilChangeIcon, BrakesIcon, HeatACIcon, TransmissionI
 import type { SiteSettings } from "@/sanity/lib/fetch";
 
 const NAV_ITEMS = [
-  { label: "Home", href: "/website" },
-  { label: "About", href: "/website/about" },
-  { label: "Services", href: "/website/services", hasDropdown: true },
-  { label: "Financing", href: "/website/financing" },
-  { label: "Contact", href: "/website/contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services", hasDropdown: true },
+  { label: "Financing", href: "/financing" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const SERVICE_ITEMS = [
-  { label: "Car Problems?", subtitle: "Free Diagnostic", href: "/website/services/diagnostic", icon: CarDiagnosticIcon },
-  { label: "Oil Change", href: "/website/services/oil-change", icon: OilChangeIcon },
-  { label: "Brakes", href: "/website/services/brakes", icon: BrakesIcon },
-  { label: "Heat or A/C", href: "/website/services/hvac", icon: HeatACIcon },
-  { label: "Transmission", href: "/website/services/transmission", icon: TransmissionIcon },
+  { label: "Car Problems?", subtitle: "Free Diagnostic", href: "/services/diagnostic", icon: CarDiagnosticIcon },
+  { label: "Oil Change", href: "/services/oil-change", icon: OilChangeIcon },
+  { label: "Brakes", href: "/services/brakes", icon: BrakesIcon },
+  { label: "Heat or A/C", href: "/services/hvac", icon: HeatACIcon },
+  { label: "Transmission", href: "/services/transmission", icon: TransmissionIcon },
 ];
 
 interface NavbarClientProps {
@@ -70,7 +70,7 @@ export function NavbarClient({ settings }: NavbarClientProps) {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const isHome = pathname === "/website";
+  const isHome = pathname === "/";
   const isRedMode = !scrolled && isHome;
   const isBlueMode = !scrolled && !isHome;
   const isWhiteMode = scrolled;
@@ -81,7 +81,7 @@ export function NavbarClient({ settings }: NavbarClientProps) {
     return "white";
   };
   
-  const isActive = (href: string) => pathname === href || (href !== "/website" && pathname.startsWith(href));
+  const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(href));
 
   return (
     <>
@@ -142,7 +142,7 @@ export function NavbarClient({ settings }: NavbarClientProps) {
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between h-24">
             <div className="flex items-center h-full">
-              <Link href="/website" className="relative z-10 flex items-center h-full pr-10 min-w-[200px]">
+              <Link href="/" className="relative z-10 flex items-center h-full pr-10 min-w-[200px]">
                 <Image src="/logo_transparent.png" alt="Lonestar Transmissions" width={280} height={90} className="h-[85px] w-auto" />
               </Link>
               <div className={`hidden lg:block w-[1px] h-full transition-colors duration-300 ${scrolled ? "bg-gray-200" : "bg-white/20"}`} />

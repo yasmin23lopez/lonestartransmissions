@@ -7,18 +7,18 @@ import { CarDiagnosticIcon, OilChangeIcon, BrakesIcon, HeatACIcon, TransmissionI
 import type { SiteSettings } from "@/sanity/lib/fetch";
 
 const SERVICES = [
-  { name: "Free Diagnostic", href: "/website/services/diagnostic", icon: CarDiagnosticIcon },
-  { name: "Oil Change", href: "/website/services/oil-change", icon: OilChangeIcon },
-  { name: "Brakes", href: "/website/services/brakes", icon: BrakesIcon },
-  { name: "Heat or A/C", href: "/website/services/hvac", icon: HeatACIcon },
-  { name: "Transmission", href: "/website/services/transmission", icon: TransmissionIcon },
+  { name: "Free Diagnostic", href: "/services/diagnostic", icon: CarDiagnosticIcon },
+  { name: "Oil Change", href: "/services/oil-change", icon: OilChangeIcon },
+  { name: "Brakes", href: "/services/brakes", icon: BrakesIcon },
+  { name: "Heat or A/C", href: "/services/hvac", icon: HeatACIcon },
+  { name: "Transmission", href: "/services/transmission", icon: TransmissionIcon },
 ];
 
 const NAV_LINKS = [
-  { name: "Home", href: "/website" },
-  { name: "About", href: "/website/about" },
-  { name: "Financing", href: "/website/financing" },
-  { name: "Contact", href: "/website/contact" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Financing", href: "/financing" },
+  { name: "Contact", href: "/contact" },
 ];
 
 function YelpIcon({ className }: { className?: string }) {

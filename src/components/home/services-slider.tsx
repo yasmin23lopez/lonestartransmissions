@@ -57,7 +57,7 @@ export function ServicesSlider({ services, settings }: ServicesSliderProps) {
 
   const getServiceHref = (service: Service) => {
     const slug = service.slug?.current || "diagnostic";
-    return `/website/services/${slug}`;
+    return `/services/${slug}`;
   };
 
   return (

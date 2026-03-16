@@ -1,55 +1,53 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, CheckCircle, Phone, Clock, Shield, AlertTriangle, Disc } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, CheckCircle, Phone, Clock, Shield, Droplets, Gauge } from "lucide-react";
 
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { FadeIn } from "@/components/ui";
-import { BrakesIcon } from "@/components/icons";
+import { OilChangeIcon } from "@/components/icons";
 import { getSiteSettings, getServiceBySlug } from "@/sanity/lib/fetch";
 
 const SERVICE = {
-  title: "BRAKES",
-  subtitle: "Repair & Replacement",
-  description: "Your safety is our priority. We provide complete brake services from pad replacement to full system overhauls. Don't compromise on stopping power.",
+  title: "OIL CHANGE",
+  subtitle: "Full Service",
+  description: "Keep your engine running smooth with regular oil changes. We use quality oils and filters to protect your engine and extend its life.",
   features: [
-    "Brake pad replacement",
-    "Rotor resurfacing or replacement",
-    "Caliper repair and replacement",
-    "Brake line inspection and repair",
-    "Brake fluid flush",
-    "ABS system diagnostics",
+    "Conventional, synthetic blend, or full synthetic oil",
+    "Premium oil filter replacement",
+    "Fluid level check and top-off",
+    "Tire pressure check",
+    "Visual inspection of belts and hoses",
+    "Battery condition check",
   ],
-  warningSigns: [
-    "Squealing or grinding noise when braking",
-    "Vibration or pulsing in brake pedal",
-    "Vehicle pulls to one side when braking",
-    "Soft or spongy brake pedal",
-    "Brake warning light on dashboard",
-    "Longer stopping distances",
+  oilTypes: [
+    { name: "Conventional Oil", desc: "Affordable option for older vehicles or low-mileage drivers" },
+    { name: "Synthetic Blend", desc: "Best of both worlds—better protection at a moderate price" },
+    { name: "Full Synthetic", desc: "Maximum protection for high-performance or newer vehicles" },
+    { name: "High Mileage", desc: "Specially formulated for vehicles with 75,000+ miles" },
   ],
   benefits: [
-    { icon: Shield, title: "Safety First", desc: "Quality parts guaranteed" },
-    { icon: Clock, title: "Same-Day Service", desc: "Most repairs done today" },
-    { icon: Disc, title: "All Makes", desc: "Domestic & foreign" },
-    { icon: AlertTriangle, title: "Free Inspection", desc: "Know before you pay" },
+    { icon: Droplets, title: "Quality Oil", desc: "Top brands only" },
+    { icon: Clock, title: "Quick Service", desc: "30 minutes or less" },
+    { icon: Shield, title: "Engine Protection", desc: "Extend engine life" },
+    { icon: Gauge, title: "Better Performance", desc: "Improved efficiency" },
   ],
   faqs: [
-    { q: "How do I know if I need new brakes?", a: "Common signs include squealing, grinding, vibration, or a soft pedal. We offer free brake inspections." },
-    { q: "How long do brake pads last?", a: "Typically 30,000-70,000 miles depending on driving habits and conditions." },
-    { q: "Do you resurface rotors?", a: "Yes, when possible. If rotors are too worn, we'll recommend replacement for safety." },
+    { q: "How often should I change my oil?", a: "Most vehicles need an oil change every 3,000-7,500 miles depending on oil type and driving conditions." },
+    { q: "What type of oil do I need?", a: "We'll recommend the best oil for your vehicle based on manufacturer specs and your driving habits." },
+    { q: "Do you check other fluids?", a: "Yes! Every oil change includes a complimentary fluid level check and top-off." },
   ],
 };
 
-export default async function BrakesPage() {
+export default async function OilChangePage() {
   const [settings, service] = await Promise.all([
     getSiteSettings(),
-    getServiceBySlug("brakes"),
+    getServiceBySlug("oil-change"),
   ]);
   
   const phone = settings?.phone || "281-462-4970";
   const bookingUrl = settings?.bookingUrl || "https://booking.shopgenie.io/?shop=lonestartransmissions-4250819731&preselect_account=lonestartransmissions-4250819473";
-  const heroImage = service?.image || "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070";
+  const heroImage = service?.image || "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?q=80&w=2070";
 
   return (
     <div className="min-h-screen bg-white font-[family-name:var(--font-funnel)] overflow-x-hidden">
@@ -62,12 +60,12 @@ export default async function BrakesPage() {
           <div className="absolute inset-0 bg-gradient-to-r from-[#16215B] via-[#16215B]/50 to-transparent" />
         </div>
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 lg:px-12">
-          <Link href="/website#services" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors">
+          <Link href="/#services" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> All Services
           </Link>
           <div className="flex items-center gap-4 mb-6">
             <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center">
-              <BrakesIcon className="w-8 h-8 text-white" />
+              <OilChangeIcon className="w-8 h-8 text-white" />
             </div>
           </div>
           <h1 className="text-5xl lg:text-8xl font-saira font-black text-white leading-[0.85] uppercase mb-4">{SERVICE.title}</h1>
@@ -82,7 +80,7 @@ export default async function BrakesPage() {
             <div>
               <FadeIn><p className="text-xl text-gray-600 mb-12 leading-relaxed">{SERVICE.description}</p></FadeIn>
               <FadeIn delay={0.1}>
-                <h3 className="text-2xl font-saira font-bold text-[#070889] uppercase mb-6">Our Brake Services</h3>
+                <h3 className="text-2xl font-saira font-bold text-[#070889] uppercase mb-6">What's Included</h3>
                 <div className="space-y-4">
                   {SERVICE.features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-3 p-4 bg-gray-50 rounded-xl">
@@ -95,20 +93,20 @@ export default async function BrakesPage() {
             </div>
             <div>
               <FadeIn delay={0.2}>
-                <h3 className="text-2xl font-saira font-bold text-[#070889] uppercase mb-6">Warning Signs</h3>
-                <div className="space-y-3 mb-12">
-                  {SERVICE.warningSigns.map((sign, i) => (
-                    <div key={i} className="flex items-center gap-3 p-4 bg-red-50 rounded-xl border border-red-100">
-                      <div className="w-2 h-2 bg-[#DC2626] rounded-full flex-shrink-0" />
-                      <span className="text-gray-700">{sign}</span>
+                <h3 className="text-2xl font-saira font-bold text-[#070889] uppercase mb-6">Oil Types We Offer</h3>
+                <div className="space-y-4 mb-12">
+                  {SERVICE.oilTypes.map((type, i) => (
+                    <div key={i} className="p-4 bg-gray-50 rounded-xl">
+                      <p className="font-bold text-[#070889]">{type.name}</p>
+                      <p className="text-gray-500 text-sm">{type.desc}</p>
                     </div>
                   ))}
                 </div>
               </FadeIn>
               <FadeIn delay={0.3}>
                 <div className="bg-[#070889] rounded-2xl p-8">
-                  <h4 className="text-xl font-bold text-white mb-4">Brake problems?</h4>
-                  <p className="text-white/60 mb-6">Don't risk your safety. Get a free brake inspection today.</p>
+                  <h4 className="text-xl font-bold text-white mb-4">Due for an oil change?</h4>
+                  <p className="text-white/60 mb-6">Quick, professional service. In and out in 30 minutes or less.</p>
                   <div className="flex flex-wrap gap-4">
                     <a href={`tel:${phone}`} className="inline-flex items-center gap-2 px-6 py-3 bg-[#DC2626] text-white font-saira font-semibold rounded-[9px] hover:bg-[#b91c1c] transition-all duration-500 ease-out">
                       <Phone className="w-4 h-4" />Call Now
@@ -166,8 +164,8 @@ export default async function BrakesPage() {
       {/* CTA */}
       <section className="py-24 lg:py-32 bg-[#DC2626]">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 text-center">
-          <h2 className="text-4xl lg:text-6xl font-saira font-black text-white leading-[0.9] uppercase mb-6">BRAKE SERVICE</h2>
-          <p className="text-white/80 text-xl mb-10 max-w-2xl mx-auto">Your safety matters. Professional brake service with quality parts and expert technicians.</p>
+          <h2 className="text-4xl lg:text-6xl font-saira font-black text-white leading-[0.9] uppercase mb-6">OIL CHANGE SERVICE</h2>
+          <p className="text-white/80 text-xl mb-10 max-w-2xl mx-auto">Keep your engine protected. Quick, professional oil changes with quality products.</p>
           <div className="flex flex-wrap justify-center gap-4">
             <a href={`tel:${phone}`} className="inline-flex items-center gap-3 px-10 py-5 bg-white text-[#DC2626] font-saira font-semibold tracking-wider rounded-[9px] hover:bg-gray-100 transition-all duration-500 ease-out">
               <Phone className="w-5 h-5" /><span>CALL {phone}</span>
